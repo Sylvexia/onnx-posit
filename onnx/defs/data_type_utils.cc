@@ -440,6 +440,8 @@ TypesWrapper::TypesWrapper() {
   type_str_to_tensor_data_type_["float8e4m3fnuz"] = TensorProto_DataType_FLOAT8E4M3FNUZ;
   type_str_to_tensor_data_type_["float8e5m2"] = TensorProto_DataType_FLOAT8E5M2;
   type_str_to_tensor_data_type_["float8e5m2fnuz"] = TensorProto_DataType_FLOAT8E5M2FNUZ;
+  type_str_to_tensor_data_type_["posit8es0"] = TensorProto_DataType_POSIT8ES0;
+  type_str_to_tensor_data_type_["posit16es1"] = TensorProto_DataType_POSIT16ES1;
 
   for (auto& str_type_pair : type_str_to_tensor_data_type_) {
     tensor_data_type_to_type_str_[str_type_pair.second] = str_type_pair.first;

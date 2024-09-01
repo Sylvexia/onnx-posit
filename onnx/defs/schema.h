@@ -596,7 +596,9 @@ class OpSchema final {
         "tensor(float8e4m3fn)",
         "tensor(float8e4m3fnuz)",
         "tensor(float8e5m2)",
-        "tensor(float8e5m2fnuz)"};
+        "tensor(float8e5m2fnuz)",
+        "tensor(posit8es0)",
+        "tensor(posit16es1)"};
     return numeric_types_for_math_reduction_ir9;
   }
 
@@ -642,7 +644,9 @@ class OpSchema final {
         "tensor(float8e4m3fn)",
         "tensor(float8e4m3fnuz)",
         "tensor(float8e5m2)",
-        "tensor(float8e5m2fnuz)"};
+        "tensor(float8e5m2fnuz)",
+        "tensor(posit8es0)",
+        "tensor(posit16es1)"};
     return all_numeric_types_ir9;
   }
 
@@ -751,7 +755,10 @@ class OpSchema final {
         "tensor(float8e4m3fn)",
         "tensor(float8e4m3fnuz)",
         "tensor(float8e5m2)",
-        "tensor(float8e5m2fnuz)"};
+        "tensor(float8e5m2fnuz)",
+        "tensor(posit8es0)",
+        "tensor(posit16es1)"
+        };
     return all_float_types_ir9;
   }
 
@@ -761,7 +768,8 @@ class OpSchema final {
         "tensor(int8)",         "tensor(int16)",          "tensor(int32)",      "tensor(int64)",
         "tensor(bfloat16)",     "tensor(float16)",        "tensor(float)",      "tensor(double)",
         "tensor(string)",       "tensor(bool)",           "tensor(complex64)",  "tensor(complex128)",
-        "tensor(float8e4m3fn)", "tensor(float8e4m3fnuz)", "tensor(float8e5m2)", "tensor(float8e5m2fnuz)"};
+        "tensor(float8e4m3fn)", "tensor(float8e4m3fnuz)", "tensor(float8e5m2)", "tensor(float8e5m2fnuz)",
+        "tensor(posit8es0)",    "tensor(posit16es1)"};
     return all_tensor_types_ir9;
   }
 
@@ -814,7 +822,8 @@ class OpSchema final {
         "seq(tensor(float16))",    "seq(tensor(float))",         "seq(tensor(double))",
         "seq(tensor(string))",     "seq(tensor(bool))",          "seq(tensor(complex64))",
         "seq(tensor(complex128))", "seq(tensor(float8e4m3fn))",  "seq(tensor(float8e4m3fnuz))",
-        "seq(tensor(float8e5m2))", "seq(tensor(float8e5m2fnuz))"};
+        "seq(tensor(float8e5m2))", "seq(tensor(float8e5m2fnuz))", "seq(tensor(posit8es0))",
+        "seq(tensor(posit16es1))"};
     return all_tensor_sequence_types_ir4;
   }
 
@@ -862,7 +871,8 @@ class OpSchema final {
         "optional(tensor(bfloat16))",        "optional(tensor(float16))",     "optional(tensor(float))",
         "optional(tensor(double))",          "optional(tensor(string))",      "optional(tensor(bool))",
         "optional(tensor(complex64))",       "optional(tensor(complex128))",  "optional(tensor(float8e4m3fn))",
-        "optional(tensor(float8e4m3fnuz))",  "optional(tensor(float8e5m2))",  "optional(tensor(float8e5m2fnuz))"};
+        "optional(tensor(float8e4m3fnuz))",  "optional(tensor(float8e5m2))",  "optional(tensor(float8e5m2fnuz))",
+        "optional(tensor(posit8es0))",       "optional(tensor(posit16es1))"};
     return all_optional_types;
   }
 

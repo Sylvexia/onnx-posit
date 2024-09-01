@@ -354,6 +354,19 @@ def float32_to_bfloat16(fval: float, truncate: bool = False) -> int:
     rounded = ((ival >> 16) & 1) + 0x7FFF
     return (ival + rounded) >> 16
 
+def float32_to_posit8es0(
+    fval: float,
+    scale: float = 1.0,
+    saturate: bool = True,
+) -> int:
+    pass
+
+def float32_to_posit16es1(
+    fval: float,
+    scale: float = 1.0,
+    saturate: bool = True,
+) -> int:
+    pass
 
 def float32_to_float8e4m3(  # noqa: PLR0911
     fval: float,
@@ -648,13 +661,17 @@ def make_tensor(
     if raw:
         # NumPy doesn't have BFLOAT16. TENSOR_TYPE_TO_NP_TYPE maps it to float32,
         # which has the wrong itemsize.
-        if data_type == TensorProto.BFLOAT16:
+        if data_type in (
+            TensorProto.BFLOAT16,
+            TensorProto.POSIT16ES1,
+        ):
             expected_size = 2
         elif data_type in (
             TensorProto.FLOAT8E4M3FN,
             TensorProto.FLOAT8E4M3FNUZ,
             TensorProto.FLOAT8E5M2,
             TensorProto.FLOAT8E5M2FNUZ,
+            TensorProto.POSIT8ES0,
         ):
             expected_size = 1
         else:
@@ -685,6 +702,8 @@ def make_tensor(
             TensorProto.FLOAT8E4M3FNUZ,
             TensorProto.FLOAT8E5M2,
             TensorProto.FLOAT8E5M2FNUZ,
+            TensorProto.POSIT8ES0,
+            TensorProto.POSIT16ES1,
         ):
             fcast = {
                 TensorProto.BFLOAT16: float32_to_bfloat16,
@@ -696,6 +715,8 @@ def make_tensor(
                 TensorProto.FLOAT8E5M2FNUZ: lambda *args: float32_to_float8e5m2(  # type: ignore[misc]
                     *args, fn=True, uz=True
                 ),
+                TensorProto.POSIT8ES0: float32_to_posit8es0,
+                TensorProto.POSIT16ES1: float32_to_posit16es1,
             }[
                 data_type  # type: ignore[index]
             ]

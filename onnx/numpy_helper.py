@@ -171,6 +171,20 @@ def float8e5m2_to_float32(
     return res.reshape(dims)  # type: ignore[no-any-return]
 
 
+def posit8es0_to_float32(
+    data: Union[np.int16, np.int32, np.ndarray],
+    dims: Optional[Union[int, Sequence[int]]] = None,
+) -> np.ndarray:
+    pass
+
+
+def posit16es1_to_float32(
+    data: Union[np.int16, np.int32, np.ndarray],
+    dims: Optional[Union[int, Sequence[int]]] = None,
+) -> np.ndarray:
+    pass
+
+
 def to_array(tensor: TensorProto, base_dir: str = "") -> np.ndarray:  # noqa: PLR0911
     """Converts a tensor def object to a numpy array.
 
@@ -230,6 +244,14 @@ def to_array(tensor: TensorProto, base_dir: str = "") -> np.ndarray:  # noqa: PL
             data = np.frombuffer(tensor.raw_data, dtype=np.int8)
             return float8e5m2_to_float32(data, dims, fn=True, uz=True)
 
+        if tensor_dtype == TensorProto.POSIT8ES0:
+            data = np.frombuffer(tensor.raw_data, dtype=np.int8)
+            return posit8es0_to_float32(data, dims)
+
+        if tensor_dtype == TensorProto.POSIT16ES1:
+            data = np.frombuffer(tensor.raw_data, dtype=np.int16)
+            return posit16es1_to_float32(data, dims)
+
         return np.frombuffer(tensor.raw_data, dtype=np_dtype).reshape(dims)  # type: ignore[no-any-return]
 
     # float16 is stored as int32 (uint16 type); Need view to get the original value
@@ -260,6 +282,14 @@ def to_array(tensor: TensorProto, base_dir: str = "") -> np.ndarray:  # noqa: PL
     if tensor_dtype == TensorProto.FLOAT8E5M2FNUZ:
         data = np.asarray(tensor.int32_data, dtype=np.int32)
         return float8e5m2_to_float32(data, dims, fn=True, uz=True)
+
+    if tensor_dtype == TensorProto.POSIT8ES0:
+        data = np.asarray(tensor.int32_data, dtype=np.int32)
+        return posit8es0_to_float32(data, dims)
+
+    if tensor_dtype == TensorProto.POSIT16ES1:
+        data = np.asarray(tensor.int32_data, dtype=np.int32)
+        return posit16es1_to_float32(data, dims)
 
     data = getattr(tensor, storage_field)
     if tensor_dtype in (TensorProto.COMPLEX64, TensorProto.COMPLEX128):

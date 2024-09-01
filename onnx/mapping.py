@@ -80,6 +80,12 @@ TENSOR_TYPE_MAP = {
     int(TensorProto.FLOAT8E5M2FNUZ): TensorDtypeMap(
         np.dtype("float32"), int(TensorProto.UINT8), "TensorProto.FLOAT8E5M2FNUZ"
     ),
+    int(TensorProto.POSIT8ES0): TensorDtypeMap(
+        np.dtype("float32"), int(TensorProto.UINT8), "TensorProto.POSIT8ES0"
+    ),
+    int(TensorProto.POSIT16ES1): TensorDtypeMap(
+        np.dtype("float32"), int(TensorProto.UINT16), "TensorProto.POSIT16ES1"
+    ),
 }
 
 
@@ -154,6 +160,8 @@ _NP_TYPE_TO_TENSOR_TYPE = {
         TensorProto.FLOAT8E4M3FNUZ,
         TensorProto.FLOAT8E5M2,
         TensorProto.FLOAT8E5M2FNUZ,
+        TensorProto.POSIT8ES0,
+        TensorProto.POSIT16ES1,
     )
 }
 
